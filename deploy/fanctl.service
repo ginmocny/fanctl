@@ -1,0 +1,13 @@
+[Unit]
+Description=Reapply fanctl curves and saved per-fan holds
+After=multi-user.target
+ConditionPathExists=/var/lib/fanctl/bios.json
+
+[Service]
+Type=oneshot
+# Absolutna ścieżka bin/fanctl na tej maszynie. Nie kopiuj tej jednostki w ciemno.
+ExecStart=/opt/fanctl/bin/fanctl boot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
